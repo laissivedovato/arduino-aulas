@@ -1,0 +1,38 @@
+// //FUNÇÃO MAP
+#include <Arduino.h>
+int leds[] = {2, 3, 4, 5, 6, 7};
+#define pot A0
+int val;
+
+void setup() {
+  for (int i = 0; i < 6; i++) {
+    pinMode(leds[i], OUTPUT);
+  }
+  pinMode(pot, INPUT);
+
+  //Serial.begin(9600);
+}
+
+void acender(int x) {
+  int i;
+  for (i = 0; i < x; i++) {
+    digitalWrite(leds[i], HIGH);
+  }
+
+  for (i = x; i < 6; i++) {
+    digitalWrite(leds[i], LOW);
+  }
+}
+
+void loop() {
+  val = analogRead(pot);
+
+  //Serial.println(analogRead(pot));
+  acender(map(val, 0, 700, 0, 6));
+}
+
+// analogico = 0 a 1023
+// PWM = 0 a 255
+// sintaxe = map(leitura, min_val_entrada, max_val_entrada, min_saida, max_val_saida;)
+//  analogWrite(led, analogRead(pot)/4);
+//  analogWrite(led, map(analogRead(pot), 0, 1023, 0, 255));

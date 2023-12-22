@@ -1,0 +1,108 @@
+//LED RGB, MODULOLED RGB
+#include <Arduino.h>
+#define ledR 2
+#define ledG 4
+#define ledB 3
+#define  btn 7
+#define maximo 7 //cores configuradas
+
+int btnOn = 0;
+int btnOff= 0;
+int cycle= 0;
+
+void red() {
+  // amarelo- RGB(255,0,0)
+  digitalWrite(ledR, 1);
+  digitalWrite(ledG, 0);
+  digitalWrite(ledB, 0);
+}
+
+void green() {
+  // amarelo- RGB(0,255,0)
+  digitalWrite(ledR, 0);
+  digitalWrite(ledG, 1);
+  digitalWrite(ledB, 0);
+}
+
+void blue() {
+  // amarelo- RGB(0,0,255)
+  digitalWrite(ledR, 0);
+  digitalWrite(ledG, 0);
+  digitalWrite(ledB, 1);
+}
+
+void yellow() {
+  //amarelo- RGB(255,255,0)
+  digitalWrite(ledR, 1);
+  digitalWrite(ledB, 1);
+  digitalWrite(ledG, 0);
+}
+
+void white() {
+  // branco- RGB(255,255,255)
+  digitalWrite(ledR, 1);
+  digitalWrite(ledG, 1);
+  digitalWrite(ledB, 1);
+}
+
+void magenta() {
+  // magenta- RGB(255,0,255)
+  digitalWrite(ledR,1);
+  digitalWrite(ledG, 0);
+  digitalWrite(ledB, 1);
+}
+
+void ciano() {
+  // ciano- RGB(0,255,255)
+  digitalWrite(ledR, 0);
+  digitalWrite(ledG, 1);
+  digitalWrite(ledB, 1);
+}
+
+void changeLed() {
+  if(cycle== 1) {
+    red();
+  } else if(cycle== 2) {
+    green();
+  } else if(cycle== 3) {
+    blue();
+  } else if (cycle == 4) {
+    yellow();
+  } else if (cycle == 5) {
+    white();
+  } else if (cycle == 6) {
+    magenta();
+  } else if (cycle == 7) {
+    ciano();
+  }
+  cycle++;
+  if(cycle> maximo - 1 ) {
+    cycle= 0;
+  }
+}
+
+void checkbtn() {
+  if(digitalRead(btn)==HIGH) {
+    btnOn=1;
+    btnOff= 0;
+  } else {
+    btnOff=1;
+  }
+  if((btnOn==1) and (btnOff==1)) {
+    btnOn= 0;
+    btnOff=0;
+    changeLed();
+  }
+}
+
+void setup() {
+  pinMode(ledR,OUTPUT);
+  pinMode(ledG, OUTPUT);
+  pinMode(ledB, OUTPUT);
+  pinMode(btn, INPUT);
+}
+
+void loop() {
+  checkbtn();
+}
+

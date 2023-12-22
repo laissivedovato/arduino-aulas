@@ -1,0 +1,44 @@
+#include <Arduino.h>
+
+#define led_red 8
+#define led_yellow 9
+#define led_green 10
+
+void setup() {
+  //definição das portas
+  pinMode(led_red, OUTPUT);
+  pinMode(led_yellow, OUTPUT);
+  pinMode(led_green, OUTPUT);
+}
+
+void red(int tmp) {
+  //    acende luz vermelha
+  digitalWrite(led_red, HIGH);
+  digitalWrite(led_yellow, LOW);
+  digitalWrite(led_green, LOW);
+  delay(tmp*1000);
+}
+
+void green(int tmp){
+  digitalWrite(led_red, LOW);
+  digitalWrite(led_yellow, LOW);
+  digitalWrite(led_green, HIGH);
+  delay(tmp*1000);
+}
+
+void yellow(int tmp)
+{
+  // acende luz vermelha
+  digitalWrite(led_red, LOW);
+  digitalWrite(led_yellow, HIGH);
+  digitalWrite(led_green, LOW);
+  delay(tmp*1000);
+}
+
+
+void loop() {
+  //tempo em que o led ficara aceso
+  red(7);
+  green(9);
+  yellow(2);
+}

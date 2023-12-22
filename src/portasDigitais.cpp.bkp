@@ -1,0 +1,37 @@
+//AULA 6 - LENDO PORTAS DIGITAIS, DigitalRead, pushButton
+#include <Arduino.h>
+#define led 4
+#define btn 3
+int btnOn= 0;
+int btnOff= 0;
+
+void changeLed() {
+  if(digitalRead(led)== HIGH) {
+    digitalWrite(led, LOW);
+  } else {
+    digitalWrite(led, HIGH);
+  }
+}
+
+void keyUp() {
+  if((btnOn==1) and (btnOff==1)) {
+    btnOn = 0;
+    btnOff = 0;
+    changeLed();
+  }
+}
+
+void setup() {
+  pinMode(led, OUTPUT);
+  pinMode(btn, INPUT);
+}
+
+void loop() {
+if(digitalRead(btn)==HIGH){
+  btnOn= 1;
+  btnOff= 0;
+}   else{
+      btnOff= 1;
+    }
+  keyUp();
+}
