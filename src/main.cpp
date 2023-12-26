@@ -1,24 +1,15 @@
-//SENSOR DE LUZ, SENSOR LDR, FOTORESISTOR
-//LDR - Light dependent resistor
+//FUNÇÃO CONSTRAIN -> determinar uma faixa de valor
+//constrain(valor_lido, min_saida, max-saida);
+//constrain(valor_lido_pot, 500, 800)
 #include <Arduino.h>
-#define ldr A0
-#define led 2
-int vlrd= 0;
+#define pot A0
 
-void setup() {
-  pinMode(ldr, INPUT);
-  pinMode(led, OUTPUT);
+void setup( ){
+  pinMode(pot,INPUT);
   Serial.begin(9600);
 }
 
 void loop() {
-  vlrd=analogRead(ldr);
-  if(vlrd<300) {
-    digitalWrite(led, HIGH);
-  }else{
-    digitalWrite(led, LOW);
-  }
-  Serial.println(vlrd);
-  delay(200);
+  Serial.println(constrain(analogRead(pot),500, 800));
+  delay(250);
 }
-
