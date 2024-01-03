@@ -1,12 +1,31 @@
-//MOTOR DC
 #include <Arduino.h>
 #define motor 2
+int time = 200;
+int maxtime = 2000;
+int mintime = 200;
 
-void setup() {
+void setup()
+{
   pinMode(motor, OUTPUT);
+  Serial.begin(9600);
+}
+
+void randomDelay(bool willPrint = true) {
+  int randomValue= random(mintime, maxtime);
+  if (willPrint) {
+    Serial.println(randomValue);
+  }
+  delay(randomValue);
+}
+
+void loop()
+{
   digitalWrite(motor, HIGH);
+  // delay(time);
+  randomDelay(false);
+  digitalWrite(motor, LOW);
+  // delay(time);
+  randomDelay();
 }
 
-void loop() {
 
-}
