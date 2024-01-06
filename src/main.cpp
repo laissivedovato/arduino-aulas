@@ -1,31 +1,15 @@
+//MOTOR DC - diodo-  AULA 2
 #include <Arduino.h>
 #define motor 2
-int time = 200;
-int maxtime = 2000;
-int mintime = 200;
+int time= 2000;
 
-void setup()
-{
+void setup() {
   pinMode(motor, OUTPUT);
-  Serial.begin(9600);
 }
 
-void randomDelay(bool willPrint = true) {
-  int randomValue= random(mintime, maxtime);
-  if (willPrint) {
-    Serial.println(randomValue);
-  }
-  delay(randomValue);
-}
-
-void loop()
-{
+void loop() {
   digitalWrite(motor, HIGH);
-  // delay(time);
-  randomDelay(false);
+  delay(time);
   digitalWrite(motor, LOW);
-  // delay(time);
-  randomDelay();
+  delay(time);
 }
-
-
